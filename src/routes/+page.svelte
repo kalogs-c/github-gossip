@@ -23,9 +23,9 @@
 	</main>
 
 	<div class="join grid grid-cols-2 fixed bottom-5 right-5">
-		{#if data.page > 1}
-			<a href="/?page={data.page - 1}" class="join-item btn btn-outline">Previous</a>
+		{#if data.page > 0}
+			<a href="/?page={data.page - 1}" class="join-item btn md:btn-outline">Previous</a>
 		{/if}
-		<a href="/?page={data.page + 1}" class="join-item btn btn-outline">Next</a>
+		<a href="/?page={data.page + 1}" class="join-item btn btn-primary md:btn-outline">Next</a>
 	</div>
 </MainContainer>
