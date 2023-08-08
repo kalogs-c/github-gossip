@@ -1,9 +1,18 @@
 export async function listUsers(since: number): Promise<User[]> {
+
   const response = await fetch(`https://api.github.com/users?since=${since}`);
   const data = await response.json();
 
-  if (data.length === 0) {
-    return [];
+  console.log(data.message)
+
+  if (data.message.includes("API rate limit")) {
+    return [{
+      id: 0,
+      login: "API rate limit exceeded",
+      avatar_url: "https://avatars.githubusercontent.com/u/0?v=4",
+      profile_url: "",
+      created_at: "",
+    }];
   }
 
   const users = data.map((user) => {
@@ -27,6 +36,16 @@ export async function getUser(username: string): Promise<User | undefined> {
     return undefined;
   }
 
+  if (data.message.includes("API rate limit")) {
+    return {
+      id: 0,
+      login: "API rate limit exceeded",
+      avatar_url: "https://avatars.githubusercontent.com/u/0?v=4",
+      profile_url: "",
+      created_at: "",
+    };
+  }
+
   return {
     id: data.id,
     login: data.login,
@@ -45,8 +64,13 @@ export async function listRepositories(username: string): Promise<Repository[]> 
     return [];
   }
 
-  if (data.length === 0) {
-    return [];
+  if (data.message.includes("API rate limit")) {
+    return [{
+      id: 0,
+      name: "API rate limit exceeded",
+      url: "",
+      stars: 0,
+    }];
   }
 
   const repositories = data.map((repo) => {
