@@ -22,7 +22,12 @@
 				</h2>
 				<p class="card-text">
 					This account was created at {data.details.created_at}, has {data.details.followers} followers
-					and {data.repos.length} public repositories.
+					and
+					{#if data.repos.length == 100}
+						more than 99 public repositories
+					{:else}
+						{data.repos.length} public repositories.
+					{/if}
 				</p>
 				<button class="card-actions justify-end">
 					<a class="btn btn-primary text-white" href={data.details.profile_url} target="_blank"

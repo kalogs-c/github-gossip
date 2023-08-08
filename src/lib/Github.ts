@@ -57,7 +57,7 @@ export async function getUser(username: string): Promise<User | undefined> {
 }
 
 export async function listRepositories(username: string): Promise<Repository[]> {
-  const response = await fetch(`https://api.github.com/users/${username}/repos`);
+  const response = await fetch(`https://api.github.com/users/${username}/repos?per_page=100`);
   const data = await response.json();
 
   if (data.message === "Not Found") {
