@@ -1,4 +1,4 @@
-export async function listUsers(since: number): Promise<User[]> {
+export async function listUsers(since: number = 0): Promise<User[]> {
 
   const response = await fetch(`https://api.github.com/users?since=${since}`);
   const data = await response.json();
