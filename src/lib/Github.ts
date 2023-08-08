@@ -5,7 +5,7 @@ export async function listUsers(since: number): Promise<User[]> {
 
   console.log(data.message)
 
-  if (data.message.includes("API rate limit")) {
+  if (data.message?.includes("API rate limit")) {
     return [{
       id: 0,
       login: "API rate limit exceeded",
@@ -36,7 +36,7 @@ export async function getUser(username: string): Promise<User | undefined> {
     return undefined;
   }
 
-  if (data.message.includes("API rate limit")) {
+  if (data.message?.includes("API rate limit")) {
     return {
       id: 0,
       login: "API rate limit exceeded",
@@ -64,7 +64,7 @@ export async function listRepositories(username: string): Promise<Repository[]> 
     return [];
   }
 
-  if (data.message.includes("API rate limit")) {
+  if (data.message?.includes("API rate limit")) {
     return [{
       id: 0,
       name: "API rate limit exceeded",
