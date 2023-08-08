@@ -7,17 +7,9 @@ export const GET = (async ({ params }) => {
 
   const userRepos = await listRepositories(username);
 
-  if (userRepos.message === "Not Found") {
+  if (userRepos.length === 0) {
     return error(404, { message: "User not found" });
   }
 
-  const formattedRepos = userRepos.map((repo) => {
-    return {
-      id: repo.id,
-      name: repo.name,
-      url: repo.html_url,
-    };
-  })
-
-  return json(formattedRepos);
+  return json(userRepos);
 }) as RequestHandler;
