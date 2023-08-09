@@ -8,5 +8,6 @@ pnpm dev
 
 ## Live site
 
-[Front](https://github-gossip.vercel.app/)
+[Front](https://github-gossip.vercel.app/)  
+
 [Back](https://github-gossip.vercel.app/api/)
